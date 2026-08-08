@@ -61,7 +61,7 @@ python __predict_and_gradcam.py    # smoke test on the bundled example images
 | `1_preprocessing/` | `__run_preprocessing.py`, `__get_sample_images.py` | `_ImgOps.py`, `_get_plates.py`, `_get_samples_submodules.py`, `_align_crop_masking.py` | — |
 | `2_segmentation/` | `__augmentation.py` → `_train_unet.py` → `__predict_mask.py` → `__postprocessing.py` → `_segment_roi.py` | `_train_modules.py` | `models/UNET_XENOPUS_832x512.h5`, `models/UNET_XENOPUS_208x128.h5` |
 | `3_quantification/` | `__run_quantification.py` | `__quantification_sub.py` | — |
-| `4_hpf_prediction/` | `_train_hpf.py` | `_model.py`, `_ds_loader.py`, `_augmentation.py` | `models/__predict_HPF_MAE.h5` |
+| `4_hpf_prediction/` | `_train_hpf.py` | `_model.py`, `_ds_loader.py`, `_augmentation.py` | `models/predict_hpf.h5` |
 | `5_classification/` | `__run_train.py` → `_train.py`; `__predict_and_gradcam.py` | `_resnet.py`, `_model.py`, `_ds_gen.py`, `_ds_loader.py`, `_augmentation.py`, `_gradCam_sub.py`, `dict_noUse.py` | `models/resnet18_TB-01.h5` … `resnet18_TB-04.h5` |
 | `example_data/` | — | `example_manifest.csv` | 12 test-set images |
 
@@ -92,8 +92,8 @@ path constants near the top of each entry point.
 ## Trained models
 
 The seven `.h5` weight files total **229 MB** and are **not tracked in git** — they are
-archived in the same Zenodo record as the images ([10.5281/zenodo.21845686](https://doi.org/10.5281/zenodo.21845686))
-and fetched on demand:
+archived as a single `XenoScan-models.tar` in the same Zenodo record as the images
+([10.5281/zenodo.21845686](https://doi.org/10.5281/zenodo.21845686)) and fetched on demand:
 
 ```bash
 python download_models.py            # fetch every missing weight file
@@ -101,14 +101,19 @@ python download_models.py --check    # report what is present
 python download_models.py --force    # re-download
 ```
 
-Every download is verified against the MD5 that Zenodo publishes for it. These are the exact
-weights behind every result in the paper.
+The archive is verified against the MD5 that Zenodo publishes for it before anything is
+unpacked, and each file is installed into its stage directory. These are the exact weights
+behind every result in the paper.
+
+`predict_hpf.h5` was trained with a **mean-squared-error** loss and reports mean absolute error
+as its evaluation metric. Its regression target is `frame × 25/60`, which is **2 h below** the
+`hpf = frame × 25/60 + 2` convention used elsewhere in the dataset and the manuscript.
 
 | File | Size | Stage |
 |---|---|---|
 | `resnet18_TB-01.h5` … `TB-04.h5` | 44.9 MB each | drug-response classification |
 | `UNET_XENOPUS_832x512.h5`, `UNET_XENOPUS_208x128.h5` | 23.7 MB each | body segmentation |
-| `__predict_HPF_MAE.h5` | 2.5 MB | developmental-time regression |
+| `predict_hpf.h5` | 2.5 MB | developmental-time regression |
 
 ---
 

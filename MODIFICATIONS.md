@@ -23,7 +23,7 @@ all. Nothing else was touched — no reformatting, no refactoring.
 | `5_classification/_train.py` | removed `date_of_work = '230328'`; model tag no longer carries the date |
 | `5_classification/__run_train.py` | removed `date_of_work`; model tag de-dated |
 | `5_classification/__predict_and_gradcam.py` | renamed from `__prediction_TB12.py`; removed `date_of_work`; model tag → `resnet18_TB-{n:02d}`; model path → `./models/`; test-set directory and input manifest de-dated; removed the now-unused `M_CODE` |
-| model files | `UNET_XENOPUS_832x512_v2023-0412.h5` → `UNET_XENOPUS_832x512.h5`; `UNET_XENOPUS_208x128_v2023-0412.h5` → `UNET_XENOPUS_208x128.h5`; `__predict_HPF_MAE_v221013.h5` → `__predict_HPF_MAE.h5`; `M_Xenopus_230328_832x512_20K_resnet_NCLS-003_TB-0n[_ID-003].h5` → `resnet18_TB-0n.h5` |
+| model files | `UNET_XENOPUS_832x512_v2023-0412.h5` → `UNET_XENOPUS_832x512.h5`; `UNET_XENOPUS_208x128_v2023-0412.h5` → `UNET_XENOPUS_208x128.h5`; `__predict_HPF_v221012.h5` → `predict_hpf.h5`; `M_Xenopus_230328_832x512_20K_resnet_NCLS-003_TB-0n[_ID-003].h5` → `resnet18_TB-0n.h5` |
 
 ## To make the files runnable
 
@@ -50,3 +50,12 @@ These are exactly the four sets of weights used to produce Figure 4 and the scre
 
 All 28 Python files compile (`python -m py_compile`). No absolute paths, no version dates, and
 no references to removed constants remain in any shipped script.
+
+**Correction, 2026-08-08.** The developmental-time model was initially packaged as
+`__predict_HPF_MAE_v221013.h5`. That file does **not** reproduce the published predictions.
+The model behind the reported MAE 3.22 h / RMSE 4.74 h / R² 0.958 is
+`__predict_HPF_v221012.h5` (verified: it reproduces the stored `hpf_pred` column of both
+published prediction files to within float32 rounding, while the MAE-named file deviates by
+up to 21.9 h). The correct file is now shipped, renamed `predict_hpf.h5` because it was
+trained with a mean-squared-error loss, not MAE — the `MAE` in the original filename was
+hard-coded by `_train_hpf.py:30` regardless of the loss actually selected.
