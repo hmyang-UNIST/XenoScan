@@ -182,9 +182,6 @@ Two points of transparency about the released weights:
   run writes the *last* epoch to `models/`, not the best one. The published
   `UNET_XENOPUS_*.h5` files are the weights used for every result in the paper.
 
-`MODIFICATIONS.md` lists every difference between these files and the working copies used
-during the study, with the reason for each.
-
 ---
 
 ## Example data

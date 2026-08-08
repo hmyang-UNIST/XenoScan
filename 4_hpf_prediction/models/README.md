@@ -15,4 +15,4 @@ python download_models.py --check    # report what is present
 The archive is verified against the MD5 that Zenodo publishes for it before unpacking.
 
 These are the exact weights used for every result in the paper. Retraining will not reproduce
-them bit-for-bit: random seeds were not fixed. See `../../MODIFICATIONS.md`.
+them bit-for-bit: random seeds were not fixed.
