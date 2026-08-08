@@ -1,0 +1,12 @@
+# XenoScan analysis pipeline
+# The published models were trained under this stack on NVIDIA RTX 3090 (24 GB) GPUs.
+# Python 3.9 (tested on 3.9.25)
+
+tensorflow==2.11.0
+numpy>=1.21,<1.27
+pandas>=1.3
+opencv-python>=4.5
+scikit-image>=0.19
+albumentations>=1.1,<2.0   # 2.x removes A.Flip, which _augmentation.py uses
+matplotlib>=3.5
+tqdm>=4.60

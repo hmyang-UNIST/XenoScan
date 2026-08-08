@@ -1,0 +1,13 @@
+sid,frame,timeblock,stage,label,path
+1194,28,TB-01,cleavage,CONTROL,classification_test_images/1194_C-14_P-01_sid-02_01_CONTROL/1194_0028.jpg
+1194,58,TB-02,neural,CONTROL,classification_test_images/1194_C-14_P-01_sid-02_01_CONTROL/1194_0058.jpg
+1194,98,TB-03,tailbud,CONTROL,classification_test_images/1194_C-14_P-01_sid-02_01_CONTROL/1194_0098.jpg
+1194,164,TB-04,free-swimming,CONTROL,classification_test_images/1194_C-14_P-01_sid-02_01_CONTROL/1194_0164.jpg
+1678,28,TB-01,cleavage,BIO,classification_test_images/1678_C-14_P-01_sid-26_03_BIO/1678_0028.jpg
+1678,58,TB-02,neural,BIO,classification_test_images/1678_C-14_P-01_sid-26_03_BIO/1678_0058.jpg
+1678,98,TB-03,tailbud,BIO,classification_test_images/1678_C-14_P-01_sid-26_03_BIO/1678_0098.jpg
+1678,164,TB-04,free-swimming,BIO,classification_test_images/1678_C-14_P-01_sid-26_03_BIO/1678_0164.jpg
+1918,44,TB-01,cleavage,C59,classification_test_images/1918_C-14_P-00_sid-40_04_C59/1918_0044.jpg
+1918,58,TB-02,neural,C59,classification_test_images/1918_C-14_P-00_sid-40_04_C59/1918_0058.jpg
+1918,98,TB-03,tailbud,C59,classification_test_images/1918_C-14_P-00_sid-40_04_C59/1918_0098.jpg
+1918,164,TB-04,free-swimming,C59,classification_test_images/1918_C-14_P-00_sid-40_04_C59/1918_0164.jpg

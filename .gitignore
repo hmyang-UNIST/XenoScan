@@ -1,0 +1,24 @@
+# Trained model weights — fetched from Zenodo, see download_models.py
+*.h5
+*.hdf5
+
+# Python
+__pycache__/
+*.py[cod]
+.ipynb_checkpoints/
+
+# Local data and outputs
+data/
+xx_*/
+DL_00_dataset/
+DL_01_Models/
+DL_02_Training_Log/
+___models/
+___chpt/
+___training_Log/
+*.csv.gz
+
+# OS cruft
+.DS_Store
+._*
+Thumbs.db
